@@ -1,9 +1,12 @@
 package com.jlapp.pokermao.api
 
 import com.jlapp.pokermao.model.HealthResponse
+import com.jlapp.pokermao.model.Pokemon
 import com.jlapp.pokermao.model.PokemonResponse
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Query
 
 interface PokemonService {
@@ -17,4 +20,6 @@ interface PokemonService {
         @Query("sort") sort: String
     ):Call<PokemonResponse>
 
+    @PUT("/api/pokemon")
+    fun updatePokemon(@Body pokemon: Pokemon) : Call<Pokemon>
 }

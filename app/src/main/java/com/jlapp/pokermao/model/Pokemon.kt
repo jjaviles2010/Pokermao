@@ -1,5 +1,9 @@
 package com.jlapp.pokermao.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Pokemon(
     val number: Int,
     val name: String,
@@ -9,4 +13,4 @@ data class Pokemon(
     val velocity: Int,
     val description: String,
     val imageURL: String
-)
+) : Parcelable
