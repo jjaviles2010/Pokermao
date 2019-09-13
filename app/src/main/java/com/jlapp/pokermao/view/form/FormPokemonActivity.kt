@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import com.jlapp.pokermao.R
 import com.jlapp.pokermao.model.Pokemon
 import com.squareup.picasso.Picasso
@@ -25,6 +27,19 @@ class FormPokemonActivity : AppCompatActivity() {
         setContentView(R.layout.activity_form_pokemon)
 
         setValues()
+
+        formPokemonViewModel.messageResponse.observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        })
+
+        btSaveForm.setOnClickListener {
+            pokemon.attack = sbAttack.progress
+            pokemon.defense = sbDefense.progress
+            pokemon.velocity = sbVelocity.progress
+            pokemon.ps = sbPS.progress
+
+            formPokemonViewModel.updatePokemon(pokemon)
+        }
     }
 
     private fun setValues() {
