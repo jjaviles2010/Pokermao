@@ -7,6 +7,7 @@ import com.jlapp.pokermao.model.PokemonResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class PokemonRepositoryImpl(val pokemonService: PokemonService) : PokemonRepository {
 
@@ -29,6 +30,28 @@ class PokemonRepositoryImpl(val pokemonService: PokemonService) : PokemonReposit
                     }
                 }
             })
+    }
+
+    override fun getPokemon(
+        number: String,
+        onComplete: (Pokemon?) -> Unit,
+        onError: (Throwable?) -> Unit
+    ) {
+        pokemonService.getPokemon(number)
+            .enqueue(object : Callback<Pokemon>{
+                override fun onFailure(call: Call<Pokemon>, t: Throwable) {
+                    onError(t)
+                }
+
+                override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
+                    if(response.isSuccessful) {
+                        onComplete(response.body())
+                    } else {
+                        onError(Throwable("Nao foi possivel realizar a requisicao"))
+                    }
+                }
+            });
+
     }
 
     override fun getPokemons(

@@ -4,15 +4,17 @@ import com.jlapp.pokermao.model.HealthResponse
 import com.jlapp.pokermao.model.Pokemon
 import com.jlapp.pokermao.model.PokemonResponse
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface PokemonService {
 
     @GET("/api/pokemon/health")
     fun checkHealth() : Call<HealthResponse>
+
+    @GET("/api/pokemon/{number}")
+    fun getPokemon(
+        @Path("number")number: String
+    ): Call<Pokemon>
 
     @GET("/api/pokemon")
    fun getPokemos(

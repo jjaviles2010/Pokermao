@@ -9,6 +9,12 @@ interface PokemonRepository {
         onError: (Throwable?) -> Unit
     )
 
+    fun getPokemon(
+        number: String,
+        onComplete: (Pokemon?) -> Unit,
+        onError: (Throwable?) -> Unit
+    )
+
     fun getPokemons(
         size: Int,
         sort: String,
