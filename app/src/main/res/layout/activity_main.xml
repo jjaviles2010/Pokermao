@@ -50,7 +50,7 @@
     <TextView
             android:gravity="center"
             android:textColor="#FFF"
-            android:text="DESENVOLVIDO POR HEIDER LOPES\nPara fins educacionais"
+            android:text="DESENVOLVIDO POR JOSE JAVIER"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView3" android:layout_marginBottom="8dp"
